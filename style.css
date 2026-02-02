@@ -21,19 +21,34 @@ body {
 
 .streak-header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1px;
 }
 
 .fire {
-  font-size: 2rem;
+  font-size: 3.2rem;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.streak-title {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff9f1c;
+  margin-top: 10px;
 }
 
 .streak-count {
+  margin-top: 5px;
   font-size: 1.5rem;
   text-transform: uppercase;
+  color: #fff;
 }
 
 .divider {

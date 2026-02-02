@@ -42,6 +42,7 @@ body {
   text-transform: uppercase;
   color: #ff9f1c;
   margin-top: 10px;
+  text-transform: uppercase;
 }
 
 .streak-count {
@@ -49,6 +50,7 @@ body {
   font-size: 1.5rem;
   text-transform: uppercase;
   color: #fff;
+  text-transform: uppercase;
 }
 
 .divider {
@@ -74,6 +76,7 @@ body {
   justify-content: center;
   width: 60px;
   height: 70px;
+  cursor: default;
 }
 
 .checkmark {
@@ -86,6 +89,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  transition: background 0.5s ease;
 }
 
 .day.checked .checkmark {

@@ -58,6 +58,15 @@ checkinBtn.addEventListener('click', () => {
 
   saveStreak(streak);
   updateUI(streak);
+  const rect = checkinBtn.getBoundingClientRect();
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: {
+      x: (rect.left + rect.right) / (2 * window.innerWidth),
+      y: (rect.top + rect.bottom) / (2 * window.innerHeight)
+    }
+  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {

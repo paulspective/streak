@@ -123,3 +123,62 @@ body {
 .checkin-btn:active {
   transform: scale(0.95);
 }
+
+@media (max-width: 480px) {
+  body {
+    padding: 2rem;
+  }
+
+  .streak-app {
+    padding: 1rem;
+    max-width: 320px;
+  }
+
+  .streak-header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .header-text {
+    align-items: flex-start;
+  }
+
+  .streak-title {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .streak-count {
+    font-size: 1.15rem;
+  }
+
+  .days {
+    gap: 6px;
+    padding: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .day {
+    min-width: 48px;
+    width: auto;
+    height: 60px;
+    flex: 0 0 auto;
+  }
+
+  .checkmark {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .checkin-btn {
+    padding: 0.8rem 0;
+    font-size: 1rem;
+  }
+}

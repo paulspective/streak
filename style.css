@@ -3,9 +3,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: -webkit-fill-available;
   background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-  overflow: hidden;
+  padding: 2rem 0;
+  overflow: visible;
 }
 
 .streak-app {
@@ -13,7 +14,7 @@ body {
   color: #fff;
   border-radius: 40px;
   border: 2px solid #444;
-  padding: 30px;
+  padding: 30px 20px 50px 20px;
   text-align: center;
   max-width: 370px;
   width: 100%;
@@ -42,7 +43,6 @@ body {
   text-transform: uppercase;
   color: #ff9f1c;
   margin-top: 10px;
-  text-transform: uppercase;
 }
 
 .streak-count {
@@ -50,7 +50,6 @@ body {
   font-size: 1.5rem;
   text-transform: uppercase;
   color: #fff;
-  text-transform: uppercase;
 }
 
 .divider {
@@ -126,11 +125,12 @@ body {
 
 @media (max-width: 480px) {
   body {
-    padding: 2rem;
+    justify-content: flex-start;
+    padding-top: 4rem;
   }
 
   .streak-app {
-    padding: 1rem;
+    padding: 1rem 20px 2rem 20px;
     max-width: 320px;
   }
 

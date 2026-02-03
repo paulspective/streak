@@ -1,12 +1,10 @@
-body {
+html, body {
+  height: 100%;
+  margin: 0;
   font-family: 'Rubik', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: -webkit-fill-available;
   background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-  padding: 2rem 0;
-  overflow: visible;
+  display: grid;
+  place-items: center;
 }
 
 .streak-app {
@@ -124,16 +122,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  body {
-    justify-content: flex-start;
-    padding-top: 4rem;
-  }
-
-  .streak-app {
-    padding: 1rem 20px 2rem 20px;
-    max-width: 320px;
-  }
-
   .streak-header {
     flex-direction: row;
     align-items: center;

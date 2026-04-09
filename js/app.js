@@ -189,8 +189,20 @@ function addEventListeners() {
   });
 }
 
+async function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('./serviceWorker.js');
+      console.log('Service Worker registered.');
+    } catch (error) {
+      console.warn('Service Worker registration failed:', error);
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderPresets();
   renderHabits();
   addEventListeners();
+  registerServiceWorker();
 });

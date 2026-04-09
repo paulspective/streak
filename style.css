@@ -23,9 +23,37 @@
   --radius-card: 20px;
   --radius-btn: 50px;
   --radius-input: 12px;
+  --app-header-bg: rgba(242, 242, 247, 0.85);
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   --shadow-modal: 0 8px 40px rgba(0, 0, 0, 0.12);
   --font: 'Manrope', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --surface: #181a1f;
+    --surface-2: #1f2229;
+    --border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f5f6f7;
+    --text-secondary: #c4c7cc;
+    --text-tertiary: #8d92a0;
+    --accent: #ff9f1c;
+    --accent-light: rgba(255, 159, 28, 0.18);
+    --danger: #ff453a;
+    --success: #30d158;
+    --app-header-bg: rgba(15, 18, 21, 0.85);
+    --dot-filled: #ffffff;
+    --dot-empty: #272b33;
+    --dot-today: #ffb84d;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+    --shadow-modal: 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+  }
 }
 
 body {
@@ -45,13 +73,12 @@ body {
   align-items: center;
   padding: 1rem 1.25rem;
   padding-top: calc(1rem + env(safe-area-inset-top));
-  background: rgba(242, 242, 247, 0.85);
+  background: var(--app-header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid var(--border);
 }
 
 .app-brand {

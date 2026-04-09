@@ -9,7 +9,7 @@
   --bg: #f2f2f7;
   --surface: #ffffff;
   --surface-2: #f2f2f7;
-  --border: rgba(0, 0, 0, 0.08);
+  --overlay: rgba(0, 0, 0, 0.08);
   --text-primary: #1c1c1e;
   --text-secondary: #6e6e73;
   --text-tertiary: #aeaeb2;
@@ -34,7 +34,7 @@
     --bg: #0f1115;
     --surface: #181a1f;
     --surface-2: #1f2229;
-    --border: rgba(255, 255, 255, 0.1);
+    --overlay: rgba(255, 255, 255, 0.1);
     --text-primary: #f5f6f7;
     --text-secondary: #c4c7cc;
     --text-tertiary: #8d92a0;
@@ -347,7 +347,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--overlay);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 100;

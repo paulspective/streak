@@ -10,6 +10,7 @@
   --surface: #ffffff;
   --surface-2: #f2f2f7;
   --overlay: rgba(0, 0, 0, 0.08);
+  --border: rgba(0, 0, 0, 0.08);
   --text-primary: #1c1c1e;
   --text-secondary: #6e6e73;
   --text-tertiary: #aeaeb2;
@@ -39,6 +40,7 @@
     --text-secondary: #c4c7cc;
     --text-tertiary: #8d92a0;
     --accent: #ff9f1c;
+    --border: rgba(255, 255, 255, 0.1);
     --accent-light: rgba(255, 159, 28, 0.18);
     --danger: #ff453a;
     --success: #30d158;

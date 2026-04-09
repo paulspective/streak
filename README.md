@@ -2,13 +2,17 @@
 
 A simple, elegant habit-tracking app that helps you build and maintain daily streaks. Track your habits with a clean interface, visual progress indicators, and automatic dark mode support.
 
+## Live Preview
+
+[Preview Streak](https://paulspective.github.io/streak/)
+
 ## Features
 
 - **Habit Tracking**: Add custom habits or choose from preset options
 - **Streak Calculation**: Automatically calculates current streaks based on check-ins
 - **Visual Progress**: 7-day calendar view showing recent activity
 - **Dark Mode**: Automatically follows your system's color scheme preference
-- **Responsive Design**: Works seamlessly on mobile and desktop
+- **Offline Support**: Service worker caches app assets so the app can load without a network connection
 - **Local Storage**: Data persists locally in your browser
 - **Confetti Celebrations**: Fun animations when checking in
 
@@ -18,6 +22,20 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 - **CSS3**: Custom properties, animations, and responsive design
 - **JavaScript (ES6+)**: Modular code with ES modules
 - **Canvas Confetti**: For celebration effects
+
+## Getting Started
+
+### Prerequisites
+
+- A modern web browser with service worker support (Chrome, Edge, Safari, Firefox)
+- A local server for best results, since ES modules and service workers require a secure context
+
+### Run Locally
+
+1. Open the project in your code editor
+2. Start a local server from the project root
+   - Recommended: VS Code Live Server
+3. Open `index.html` in the browser
 
 ## Usage
 
@@ -31,12 +49,16 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 
 ```
 streak/
-├── index.html          # Main HTML file
-├── style.css           # Styles with light/dark mode
+├── assets/
+│   └── fonts/
 ├── js/
-│   ├── app.js          # Main application logic
-│   └── habits.js       # Habit data and utility functions
-└── README.md           # This file
+│   ├── app.js
+│   └── habits.js
+├── index.html
+├── LICENSE
+├── README.md
+├── serviceWorker.js
+└── style.css
 ```
 
 ## Contributing

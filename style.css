@@ -2,189 +2,564 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg: #f2f2f7;
+  --surface: #ffffff;
+  --surface-2: #f2f2f7;
+  --border: rgba(0, 0, 0, 0.08);
+  --text-primary: #1c1c1e;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #aeaeb2;
+  --accent: #ff9f1c;
+  --accent-light: rgba(255, 159, 28, 0.12);
+  --danger: #ff3b30;
+  --success: #34c759;
+  --dot-filled: #1c1c1e;
+  --dot-empty: #e5e5ea;
+  --dot-today: var(--accent);
+  --radius-card: 20px;
+  --radius-btn: 50px;
+  --radius-input: 12px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --font: 'Manrope', sans-serif;
 }
 
 body {
-  font-family: 'Rubik', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
   min-height: 100vh;
-  background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-.streak-app {
-  background: #1c1c1c;
-  color: #fff;
-  border-radius: 40px;
-  border: 2px solid #444;
-  padding: 30px 20px 50px 20px;
-  text-align: center;
-  max-width: 420px;
-  width: 100%;
-}
-
-.streak-header {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-  gap: 1px;
-}
-
-.fire {
-  font-size: 3.2rem;
-}
-
-.header-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.streak-title {
-  font-size: 1rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #ff9f1c;
-  margin-top: 10px;
-}
-
-.streak-count {
-  margin-top: 5px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.divider {
-  height: 1px;
-  background: #444;
-  margin: 20px 0;
-}
-
-.days {
+/* =====================
+   Header
+===================== */
+.app-header {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-  margin: 20px 0;
-  background: #2a2a2a;
-  padding: 15px;
-  border-radius: 20px;
-}
-
-.day {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 70px;
-  cursor: default;
+  padding: 1rem 1.25rem;
+  padding-top: calc(1rem + env(safe-area-inset-top));
+  background: rgba(242, 242, 247, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
 }
 
-.checkmark {
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.app-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.add-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #555;
+  border: none;
+  background: var(--accent);
   color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 20px;
-  transition: background 0.5s ease;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+  padding-bottom: 1px;
 }
 
-.day.checked .checkmark {
-  background: #00ff7f;
+.add-btn:active {
+  transform: scale(0.92);
+  background: #e8900a;
 }
 
-.label {
-  margin-top: 5px;
-  font-size: 14px;
+/* =====================
+   Habit List
+===================== */
+.habit-list {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding-bottom: 2rem;
+}
+
+/* =====================
+   Empty State
+===================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 2rem;
+  gap: 0.5rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.4;
+}
+
+.empty-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.empty-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.empty-btn {
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-btn);
+  border: none;
+  background: var(--accent);
   color: #fff;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease;
 }
 
+.empty-btn:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   Habit Card
+===================== */
+.habit-card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: 1.125rem 1.25rem 1.25rem;
+  box-shadow: var(--shadow);
+  animation: cardIn 0.25s ease;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.875rem;
+}
+
+.habit-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.habit-streak {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.streak-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.streak-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  align-self: flex-end;
+  padding-bottom: 3px;
+}
+
+.delete-habit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.15s ease;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-habit-btn:active {
+  color: var(--danger);
+}
+
+/* =====================
+   Days Row
+===================== */
+.days-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.day-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.day-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--dot-empty);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.day-dot.filled {
+  background: var(--dot-filled);
+}
+
+.day-dot.today {
+  background: var(--dot-empty);
+  border: 2px solid var(--accent);
+}
+
+.day-dot.today.filled {
+  background: var(--accent);
+  border: none;
+}
+
+.day-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.day-label.today {
+  color: var(--accent);
+}
+
+/* =====================
+   Check In Button
+===================== */
 .checkin-btn {
   width: 100%;
-  padding: 1rem 0;
+  padding: 0.8rem;
+  border-radius: var(--radius-btn);
   border: none;
-  border-radius: 50px;
-  background: #ff9f1c;
+  background: var(--accent);
   color: #fff;
-  font-family: inherit;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+  letter-spacing: 0.1px;
 }
 
-.checkin-btn:hover {
-  background: #ff8c00;
+.checkin-btn:active:not(:disabled) {
+  transform: scale(0.97);
+  background: #e8900a;
 }
 
-.checkin-btn:active {
-  transform: scale(0.95);
+.checkin-btn:disabled {
+  background: var(--surface-2);
+  color: var(--text-tertiary);
+  cursor: default;
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 0;
+/* =====================
+   Modal
+===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 0;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: 28px 28px 0 0;
+  padding: 1.5rem 1.25rem;
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  width: 100%;
+  max-width: 480px;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: var(--shadow-modal);
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+}
+
+.modal--small {
+  border-radius: 20px;
+  margin: auto 1.25rem;
+  padding: 1.5rem;
+}
+
+.modal-overlay.active .modal--small {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.close-btn {
+  background: var(--surface-2);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.close-btn:active {
+  background: var(--border);
+}
+
+/* =====================
+   Habit Input
+===================== */
+.habit-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s ease;
+  margin-bottom: 1.25rem;
+}
+
+.habit-input:focus {
+  border-color: var(--accent);
+}
+
+.habit-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* =====================
+   Presets
+===================== */
+.presets-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.presets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.preset-chip {
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset-chip.selected {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.preset-chip:active {
+  transform: scale(0.96);
+}
+
+/* =====================
+   Confirm Button
+===================== */
+.confirm-btn {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: var(--radius-btn);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.confirm-btn:active {
+  transform: scale(0.97);
+  background: #e8900a;
+}
+
+/* =====================
+   Delete Modal
+===================== */
+.delete-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.cancel-btn:active {
+  transform: scale(0.97);
+}
+
+.delete-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: var(--radius-btn);
+  border: none;
+  background: var(--danger);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
+}
+
+/* =====================
+   Responsive
+===================== */
+@media (min-width: 480px) {
+  .habit-list {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
   }
 
-  .streak-app {
-    padding: 1rem;
-    max-width: 90%;
-
+  .app-header {
+    max-width: 480px;
+    margin: 0 auto;
+    justify-content: space-between;
   }
 
-  .streak-header {
-    flex-direction: row;
+  .modal-overlay {
     align-items: center;
   }
 
-  .header-text {
-    align-items: flex-start;
-  }
-
-  .streak-title {
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-  }
-
-  .streak-count {
-    font-size: 1.15rem;
-  }
-
-  .days {
-    gap: 6px;
-    padding: 10px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    justify-content: flex-start;
-  }
-
-  .day {
-    min-width: 48px;
-    width: auto;
-    height: 60px;
-    flex: 0 0 auto;
-  }
-
-  .checkmark {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
-  }
-
-  .label {
-    font-size: 12px;
-  }
-
-  .checkin-btn {
-    padding: 0.8rem 0;
-    font-size: 1rem;
+  .modal {
+    border-radius: 28px;
+    margin: 1.25rem;
+    padding-bottom: 1.5rem;
   }
 }

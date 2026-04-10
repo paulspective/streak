@@ -1,6 +1,6 @@
 # Streak
 
-A simple, elegant habit-tracking app that helps you build and maintain daily streaks. Track your habits with a clean interface, visual progress indicators, and automatic dark mode support.
+A simple, elegant habit-tracking Progressive Web App (PWA) that helps you build and maintain daily streaks. Track your habits with a clean interface, visual progress indicators, and automatic dark mode support.
 
 ## Live Preview
 
@@ -12,7 +12,8 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 - **Streak Calculation**: Automatically calculates current streaks based on check-ins
 - **Visual Progress**: 7-day calendar view showing recent activity
 - **Dark Mode**: Automatically follows your system's color scheme preference
-- **Offline Support**: Service worker caches app assets so the app can load without a network connection
+- **Offline Support**: Works without an internet connection using service workers
+- **Installable App**: Can be installed on mobile and desktop like a native app
 - **Local Storage**: Data persists locally in your browser
 - **Confetti Celebrations**: Fun animations when checking in
 
@@ -21,6 +22,8 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 - **HTML5**: Semantic markup and structure
 - **CSS3**: Custom properties, animations, and responsive design
 - **JavaScript (ES6+)**: Modular code with ES modules
+- **Service Workers**: Enable offline functionality and caching
+- **Web App Manifest**: Provides installable app experience
 - **Canvas Confetti**: For celebration effects
 
 ## Getting Started
@@ -33,7 +36,7 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 ### Run Locally
 
 1. Open the project in your code editor
-2. Start a local server from the project root
+2. Start a local server from the project root  
    - Recommended: VS Code Live Server
 3. Open `index.html` in the browser
 
@@ -50,6 +53,7 @@ A simple, elegant habit-tracking app that helps you build and maintain daily str
 ```
 streak/
 ├── assets/
+├── ├──favicons/
 │   └── fonts/
 ├── js/
 │   ├── app.js
@@ -57,6 +61,7 @@ streak/
 ├── index.html
 ├── LICENSE
 ├── README.md
+├── manifest.json
 ├── serviceWorker.js
 └── style.css
 ```

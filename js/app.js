@@ -104,6 +104,7 @@ function handleCheckIn(habitId, btn) {
 function openAddModal() {
   selectedPreset = null;
   document.getElementById('habitInput').value = '';
+  document.getElementById('reminderTime').value = '';
   document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('selected'));
   document.getElementById('modalOverlay').classList.add('active');
   setTimeout(() => document.getElementById('habitInput').focus(), 300);
@@ -113,7 +114,7 @@ function closeAddModal() {
   document.getElementById('modalOverlay').classList.remove('active');
 }
 
-function handleAddHabit() {
+async function handleAddHabit() {
   const input = document.getElementById('habitInput').value.trim();
   const name = input || selectedPreset;
 
@@ -122,11 +123,19 @@ function handleAddHabit() {
     return;
   }
 
+  const reminderTime = document.getElementById('reminderTime').value || null;
+
+  // Request notification permission if a reminder was set
+  if (reminderTime && 'Notification' in window) {
+    await Notification.requestPermission();
+  }
+
   const habits = loadHabits();
   habits.push({
     id: generateId(),
     name,
     checkedDates: [],
+    reminderTime,
   });
 
   saveHabits(habits);
@@ -200,9 +209,43 @@ async function registerServiceWorker() {
   }
 }
 
+function checkReminders() {
+  if (Notification.permission !== 'granted') return;
+
+  const habits = loadHabits();
+  const now = new Date();
+  const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  const today = getToday();
+
+  habits.forEach(habit => {
+    if (!habit.reminderTime) return;
+    if (hasCheckedInToday(habit)) return;
+
+    // Fire if current time is at or past the reminder time
+    if (currentTime >= habit.reminderTime) {
+      // Only fire once per day, track last notified date
+      const notifiedKey = `streak-notified-${habit.id}`;
+      const lastNotified = localStorage.getItem(notifiedKey);
+      if (lastNotified === today) return;
+
+      navigator.serviceWorker.ready.then(sw => {
+        sw.showNotification('Streak', {
+          body: `Don't break your streak. Check in for "${habit.name}" 🔥`,
+          icon: './assets/favicons/android-chrome-192x192.png',
+          badge: './assets/favicons/android-chrome-192x192.png',
+          tag: habit.id,
+        });
+      });
+
+      localStorage.setItem(notifiedKey, today);
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderPresets();
   renderHabits();
   addEventListeners();
   registerServiceWorker();
+  checkReminders();
 });

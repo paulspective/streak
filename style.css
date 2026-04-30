@@ -527,6 +527,54 @@ body {
 }
 
 /* =====================
+   Reminder Row
+===================== */
+.reminder-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0.875rem 1rem;
+  background: var(--surface-2);
+  border-radius: var(--radius-input);
+  border: 2px solid var(--border);
+  transition: border-color 0.15s ease;
+}
+
+.reminder-row:focus-within {
+  border-color: var(--accent);
+}
+
+.reminder-label {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.reminder-input {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  outline: none;
+  cursor: pointer;
+}
+
+.reminder-input::-webkit-calendar-picker-indicator {
+  filter: invert(65%) sepia(90%) saturate(600%) hue-rotate(5deg) brightness(0.95);
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .reminder-input {
+    color-scheme: dark;
+  }
+}
+
+/* =====================
    Confirm Button
 ===================== */
 .confirm-btn {

@@ -129,7 +129,7 @@ body {
 
 .app-title {
   font-size: 1.3rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--text-primary);
   letter-spacing: -0.3px;
 }
@@ -189,7 +189,7 @@ body {
 
 .empty-title {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
 }
 
@@ -232,6 +232,7 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -290,9 +291,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
 }
 
-.delete-habit-btn:active {
+.delete-habit-btn:active,
+.delete-habit-btn:hover {
   color: var(--danger);
 }
 

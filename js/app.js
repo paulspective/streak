@@ -248,4 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
   addEventListeners();
   registerServiceWorker();
   checkReminders();
+  
+  setInterval(checkReminders, 60 * 1000);
 });

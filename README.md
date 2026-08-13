@@ -4,7 +4,7 @@ A simple, elegant habit-tracking Progressive Web App (PWA) that helps you build 
 
 ## Live Preview
 
-[Preview Streak](https://paulspective.github.io/streak/)
+[Preview Streak](https://nuvairea.github.io/streak/)
 
 ## Features
 
